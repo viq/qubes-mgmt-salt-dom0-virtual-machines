@@ -25,14 +25,14 @@ include:
 {% set gui_user = salt['cmd.shell']('groupmems -l -g qubes') %}
 
 {% load_yaml as defaults -%}
-name:          whonix-ws-dvm
+name:          whonix-ws-{{ defaults.whonix_version }}-dvm
 present:
-  - template:  whonix-ws-14
+  - template:  whonix-ws-{{ defaults.whonix_version }}
   - label:     red
 prefs:
   - netvm:     sys-whonix
   - template-for-dispvms: true
-  - default-dispvm: whonix-ws-dvm
+  - default-dispvm: whonix-ws-{{ defaults.whonix_version }}-dvm
 tags:
   - add:
     - anon-vm
@@ -40,7 +40,7 @@ features:
   - enable:
     - appmenus-dispvm
 require:
-  - pkg:       template-whonix-ws-14
+  - pkg:       template-whonix-ws-{{ defaults.whonix_version }}
   - qvm:       sys-whonix
 {%- endload %}
 
@@ -48,6 +48,6 @@ qvm-appmenus --update whonix-ws-dvm:
   cmd.run:
     - runas: {{ gui_user }}
     - onchanges:
-      - qvm:  whonix-ws-dvm
+      - qvm:  whonix-ws-{{ defaults.whonix_version }}-dvm
 
 {{ load(defaults) }}

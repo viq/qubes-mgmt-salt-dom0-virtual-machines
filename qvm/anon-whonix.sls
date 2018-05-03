@@ -26,7 +26,7 @@ include:
 {% load_yaml as defaults -%}
 name:          anon-whonix
 present:
-  - template:  whonix-ws-14
+  - template:  whonix-ws-{{ defaults.whonix_version }}
   - label:     red
 prefs:
   - netvm:     sys-whonix
@@ -35,9 +35,9 @@ tags:
   - add:
     - anon-vm
 require:
-  - pkg:       template-whonix-ws-14
+  - pkg:       template-whonix-ws-{{ defaults.whonix_version }}
   - qvm:       sys-whonix
-  - qvm:       whonix-ws-dvm
+  - qvm:       whonix-ws-{{ defaults.whonix_version }}-dvm
 {%- endload %}
 
 {{ load(defaults) }}
