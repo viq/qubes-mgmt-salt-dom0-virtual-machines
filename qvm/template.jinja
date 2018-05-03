@@ -101,9 +101,6 @@
   {%- do defaults.update(pillar_data) %}
   {%- set force = defaults.get('force', vm.get('force', False)) %}
 
-  {#- Set whonix version in single place #}
-  {% set whonix_version = salt['pillar.get']('qvm:whonix:version', '14') %}
-
   {#- Only attempt to install the VM if it is missing (not installed) to prevent
    # changing an existing configuration, unless ``force`` is True.
    #}
