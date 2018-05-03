@@ -27,7 +27,7 @@ include:
 {% load_yaml as defaults -%}
 name:          whonix-ws-dvm
 present:
-  - template:  whonix-ws
+  - template:  whonix-ws-14
   - label:     red
 prefs:
   - netvm:     sys-whonix
@@ -40,7 +40,7 @@ features:
   - enable:
     - appmenus-dispvm
 require:
-  - pkg:       template-whonix-ws
+  - pkg:       template-whonix-ws-14
   - qvm:       sys-whonix
 {%- endload %}
 

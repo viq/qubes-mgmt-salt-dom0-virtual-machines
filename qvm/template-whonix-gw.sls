@@ -11,20 +11,20 @@
 #   qubesctl state.sls qvm.template-whonix-gw dom0
 ##
 
-template-whonix-gw:
+template-whonix-gw-14:
   pkg.installed:
-    - name:     qubes-template-whonix-gw
+    - name:     qubes-template-whonix-gw-14
     - fromrepo: qubes-templates-community
 
 whonix-gw-tag:
   qvm.vm:
-    - name: whonix-gw
+    - name: whonix-gw-14
     - tags:
       - present:
         - whonix-updatevm
     - features:
       - enable:
-        - whonix-gw
+        - whonix-gw-14
 
 whonix-gw-update-policy:
   file.prepend:

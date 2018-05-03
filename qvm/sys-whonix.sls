@@ -25,7 +25,7 @@ include:
 {% load_yaml as defaults -%}
 name:          sys-whonix
 present:
-  - template:  whonix-gw
+  - template:  whonix-gw-14
   - label:     black
   - mem:       500
 prefs:
@@ -33,7 +33,7 @@ prefs:
   - provides-network: true
   - autostart: true
 require:
-  - pkg:       template-whonix-gw
+  - pkg:       template-whonix-gw-14
   - qvm:       sys-firewall
 {%- endload %}
 
