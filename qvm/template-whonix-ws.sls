@@ -11,20 +11,20 @@
 #   qubesctl state.sls qvm.template-whonix-ws dom0
 ##
 
-template-whonix-ws-{{ defaults.whonix_version }}:
+template-whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}:
   pkg.installed:
-    - name:     qubes-template-whonix-ws-{{ defaults.whonix_version }}
+    - name:     qubes-template-whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
     - fromrepo: qubes-templates-community
 
 whonix-ws-tag:
   qvm.vm:
-    - name: whonix-ws-{{ defaults.whonix_version }}
+    - name: whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
     - tags:
       - present:
         - whonix-updatevm
     - features:
       - enable:
-        - whonix-ws-{{ defaults.whonix_version }}
+        - whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
 
 whonix-ws-update-policy:
   file.prepend:

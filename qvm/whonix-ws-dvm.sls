@@ -25,14 +25,14 @@ include:
 {% set gui_user = salt['cmd.shell']('groupmems -l -g qubes') %}
 
 {% load_yaml as defaults -%}
-name:          whonix-ws-{{ defaults.whonix_version }}-dvm
+name:          whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}-dvm
 present:
-  - template:  whonix-ws-{{ defaults.whonix_version }}
+  - template:  whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
   - label:     red
 prefs:
   - netvm:     sys-whonix
   - template-for-dispvms: true
-  - default-dispvm: whonix-ws-{{ defaults.whonix_version }}-dvm
+  - default-dispvm: whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}-dvm
 tags:
   - add:
     - anon-vm
@@ -40,7 +40,7 @@ features:
   - enable:
     - appmenus-dispvm
 require:
-  - pkg:       template-whonix-ws-{{ defaults.whonix_version }}
+  - pkg:       template-whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
   - qvm:       sys-whonix
 {%- endload %}
 
@@ -48,6 +48,6 @@ qvm-appmenus --update whonix-ws-dvm:
   cmd.run:
     - runas: {{ gui_user }}
     - onchanges:
-      - qvm:  whonix-ws-{{ defaults.whonix_version }}-dvm
+      - qvm:  whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}-dvm
 
 {{ load(defaults) }}

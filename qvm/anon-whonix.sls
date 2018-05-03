@@ -26,7 +26,7 @@ include:
 {% load_yaml as defaults -%}
 name:          anon-whonix
 present:
-  - template:  whonix-ws-{{ defaults.whonix_version }}
+  - template:  whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
   - label:     red
 prefs:
   - netvm:     sys-whonix
@@ -35,9 +35,9 @@ tags:
   - add:
     - anon-vm
 require:
-  - pkg:       template-whonix-ws-{{ defaults.whonix_version }}
+  - pkg:       template-whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
   - qvm:       sys-whonix
-  - qvm:       whonix-ws-{{ defaults.whonix_version }}-dvm
+  - qvm:       whonix-ws-{{ salt['pillar.get']('qvm:whonix:version', '14') }}-dvm
 {%- endload %}
 
 {{ load(defaults) }}

@@ -25,7 +25,7 @@ include:
 {% load_yaml as defaults -%}
 name:          sys-whonix
 present:
-  - template:  whonix-gw-{{ defaults.whonix_version }}
+  - template:  whonix-gw-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
   - label:     black
   - mem:       500
 prefs:
@@ -33,7 +33,7 @@ prefs:
   - provides-network: true
   - autostart: true
 require:
-  - pkg:       template-whonix-gw-{{ defaults.whonix_version }}
+  - pkg:       template-whonix-gw-{{ salt['pillar.get']('qvm:whonix:version', '14') }}
   - qvm:       sys-firewall
 {%- endload %}
 
